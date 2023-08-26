@@ -28,6 +28,9 @@ class Category(models.Model):
 
     name = models.CharField(max_length=255, unique=True)
 
+    def __str__(self):
+        return self.name.title()
+
 
 class Post(models.Model):
 
@@ -46,6 +49,9 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     text = models.CharField(max_length=255)
     _rating = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f'{self.author.user.username} - "{self.title.title()}"'
 
     @property
     def rating(self):

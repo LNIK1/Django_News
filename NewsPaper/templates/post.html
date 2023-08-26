@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% load custom_filters %}
+
+{% block title %}
+    {% if post.p_type == 'NE' %}
+        <h3 style="text-align: center">Новость</h3>
+    {% else %}
+        <h3 style="text-align: center">Статья</h3>
+    {% endif %}
+    <hr>
+{% endblock title %}
+
+{% block content %}
+    <h4 style="text-align: center">{{ post.title|censor }}</h4>
+    {{ post.post_date|date:'d M Y' }}
+    <hr>
+    {{ post.text|censor }}
+{% endblock content %}

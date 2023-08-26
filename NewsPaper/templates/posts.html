@@ -1,0 +1,36 @@
+<!--  наследуемся от шаблона base.html -->
+{% extends 'base.html' %}
+
+{% load custom_filters %}
+
+<!-- Название будет products -->
+{% block title %}
+{% endblock title %}
+
+<!-- В контенте на странице выводим все товары -->
+{% block content %}
+    <h1>Все новости/статьи</h1>
+    <h4>{{ time_now|date:'M d Y' }}</h4>
+    <h4>Количество: {{ posts|length }}</h4>
+    <hr>
+    {% if posts %}
+        <table>
+            <tr>
+                <td style="padding-left: 40px; padding-right: 20px">Заголовок</td>
+                <td style="padding-left: 20px; padding-right: 10px">Дата публикации</td>
+                <td style="padding-left: 500px; padding-right: 10px">Содержание</td>
+            </tr>
+            {% for post in posts %}
+                <tr>
+                    <td style="padding-left: 10px; padding-right: 20px">{{ post.title|censor }}</td>
+                    <td style="padding-left: 20px; padding-right: 20px">{{ post.post_date|date:'d M Y' }}</td>
+                    <td style="padding-left: 30px; padding-right: 20px">{{ post.text|censor|truncatewords:20 }}</td>
+
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h2>Актуальных новостей/статей нет !</h2>
+        <hr>
+    {% endif %}
+{% endblock content %}
