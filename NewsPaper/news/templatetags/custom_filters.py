@@ -25,8 +25,8 @@ def censor(value: str):
     for val in value_split:
         symbol = ""
         if ',' in val or '.' in val:
-            val_ = value[:-1]
-            symbol = value[-1]
+            val_ = val[:-1]
+            symbol = val[-1]
         else:
             val_ = val
 
