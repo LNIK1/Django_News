@@ -15,5 +15,12 @@
     <h4 style="text-align: center">{{ post.title|censor }}</h4>
     {{ post.post_date|date:'d M Y' }}
     <hr>
+    Категория/ии:
+    <td>
+        {% for ctg in post.categories.all %}
+            {{ ctg.name }};
+        {% endfor %}
+    </td>
+    <hr>
     {{ post.text|censor }}
 {% endblock content %}

@@ -10,6 +10,9 @@ class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     _rating = models.IntegerField(default=0)
 
+    def __str__(self):
+        return f'{self.user.username}'
+
     @property
     def rating(self):
         return self._rating
@@ -42,12 +45,12 @@ class Post(models.Model):
         (article, 'Статья')
     ]
 
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    categories = models.ManyToManyField(Category, through='PostCategory')
-    p_type = models.CharField(max_length=5, choices=CHOICE_LIST, default=news)
-    post_date = models.DateTimeField(auto_now_add=True)
-    title = models.CharField(max_length=255)
-    text = models.CharField(max_length=255)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name='Автор')
+    categories = models.ManyToManyField(Category, through='PostCategory', verbose_name='Категория')
+    p_type = models.CharField(max_length=5, choices=CHOICE_LIST, default=news, verbose_name='Вид')
+    post_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
+    title = models.CharField(max_length=255, verbose_name='Заголовок')
+    text = models.CharField(max_length=255, verbose_name='Содержание')
     _rating = models.IntegerField(default=0)
 
     def __str__(self):
