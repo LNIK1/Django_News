@@ -10,12 +10,12 @@
 
 <!-- В контенте на странице выводим все товары -->
 {% block content %}
-    <h1>Все новости/статьи</h1>
+    <h1>Все новости</h1>
     <h4>{{ time_now|date:'M d Y' }}</h4>
-    <h4>Количество: {{ posts|length }}</h4>
+    <h4>Количество: {{ news|length }}</h4>
     <hr>
 
-    {% if posts %}
+    {% if news %}
         <table>
             <tr>
                 <td style="padding-left: 20px; padding-right: 20px"><h5>Заголовок</h5></td>
@@ -23,7 +23,7 @@
                 <td style="padding-left: 20px; padding-right: 10px"><h5>Вид поста</h5></td>
                 <td style="padding-left: 500px; padding-right: 10px"><h5>Содержание</h5></td>
             </tr>
-            {% for post in posts %}
+            {% for post in news %}
                 <tr>
                     <td style="padding-left: 10px; padding-right: 20px">{{ post.title|censor }}</td>
                     <td style="padding-left: 40px; padding-right: 20px">{{ post.post_date|date:'d M Y' }}</td>
@@ -38,7 +38,7 @@
             {% endfor %}
         </table>
     {% else %}
-        <h2 style="text-align: center">Актуальных новостей/статей нет !</h2>
+        <h2 style="text-align: center">Актуальных новостей нет !</h2>
         <hr>
     {% endif %}
 
@@ -50,7 +50,7 @@
     {% if page_obj.has_previous %}
 
 <!--    <a style="padding-left: 900px" href="?page=1">1</a>-->
-        <a style="padding-left: 900px" href="?{% url_replace page=1 %}">1</a>
+        <a style="padding-left: 800px" href="?{% url_replace page=1 %}">1</a>
         {% if page_obj.previous_page_number != 1 %}
             {% if page_obj.number != 2 %}
                 ...
@@ -65,7 +65,7 @@
     {# Информация о текущей странице #}
 
     {% if page_obj.number == 1 %}
-        <a style="padding-left: 900px">{{ page_obj.number }}</a>
+        <a style="padding-left: 800px">{{ page_obj.number }}</a>
     {% else %}
         {{ page_obj.number }}
     {% endif %}
