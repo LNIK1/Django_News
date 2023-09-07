@@ -1,11 +1,10 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post
 from .filters import PostFilter
 from .forms import PostForm
-from datetime import datetime
 
 
 class PostList(ListView):
@@ -41,7 +40,7 @@ class PostCreate(CreateView):
         return super().form_valid(form)
 
 
-class PostUpdate(UpdateView):
+class PostUpdate(LoginRequiredMixin, UpdateView):
 
     form_class = PostForm
     model = Post
@@ -51,6 +50,9 @@ class PostUpdate(UpdateView):
     def form_valid(self, form):
 
         post = form.save(commit=False)
+
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect('/account/login/')
 
         if 'news/' in self.request.path and '/update' in self.request.path and post.p_type == 'AR':
             return HttpResponseRedirect('/posts/wrong_type_update/')

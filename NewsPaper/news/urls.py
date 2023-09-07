@@ -1,4 +1,5 @@
 from django.urls import path
+from django.contrib.auth.decorators import login_required
 from .views import PostList, PostDetail, PostCreate, PostUpdate, PostDelete, NewsList, NewsSearch, ArticlesList, WrongTypeUpdateException
 
 urlpatterns = [
