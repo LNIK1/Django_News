@@ -143,7 +143,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
 LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/posts/'
+LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/auth/complete/'
+LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000/auth/quit/'
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`

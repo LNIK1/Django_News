@@ -1,7 +1,7 @@
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .models import Post
 from .filters import PostFilter
 from .forms import PostForm
@@ -22,7 +22,11 @@ class PostDetail(DetailView):
     context_object_name = 'post'
 
 
-class PostCreate(CreateView):
+class PostCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+
+    permission_required = (
+        'news.add_post'
+    )
 
     form_class = PostForm
     model = Post
@@ -32,6 +36,9 @@ class PostCreate(CreateView):
     def form_valid(self, form):
         post = form.save(commit=False)
 
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect('/accounts/login/')
+
         if 'news/create' in self.request.path:
             post.p_type = 'NE'
         elif 'articles/create' in self.request.path:
@@ -40,7 +47,11 @@ class PostCreate(CreateView):
         return super().form_valid(form)
 
 
-class PostUpdate(LoginRequiredMixin, UpdateView):
+class PostUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+
+    permission_required = (
+        'news.change_post'
+    )
 
     form_class = PostForm
     model = Post
@@ -52,7 +63,7 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
         post = form.save(commit=False)
 
         if not self.request.user.is_authenticated:
-            return HttpResponseRedirect('/account/login/')
+            return HttpResponseRedirect('/accounts/login/')
 
         if 'news/' in self.request.path and '/update' in self.request.path and post.p_type == 'AR':
             return HttpResponseRedirect('/posts/wrong_type_update/')
