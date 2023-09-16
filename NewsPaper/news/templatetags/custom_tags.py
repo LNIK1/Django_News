@@ -1,3 +1,4 @@
+from datetime import datetime
 from django import template
 
 register = template.Library()
@@ -12,3 +13,9 @@ def url_replace(context, **kwargs):
         d[k] = v
 
     return d.urlencode()
+
+
+@register.simple_tag()
+def cur_time(format_str='%b %d %Y'):
+
+    return datetime.utcnow().strftime(format_str)

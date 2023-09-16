@@ -25,6 +25,8 @@ class PostFilter(FilterSet):
         lookup_expr='gt'
     )
 
+    categories = CharFilter(lookup_expr='icontains', label='Категория')
+
     class Meta:
 
         model = Post
