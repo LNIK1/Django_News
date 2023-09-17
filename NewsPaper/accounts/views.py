@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
-# from NewsPaper.news.models import Author
+from news.models import Author
 
 
 class IndexView(LoginRequiredMixin, TemplateView):
@@ -31,6 +31,6 @@ def get_author_status(request):
     authors_group = Group.objects.get(name='authors')
     if not request.user.groups.filter(name='authors').exists():
         authors_group.user_set.add(user)
-        # Author.objects.create(Author_user=user)
+        Author.objects.create(user=user)
 
     return redirect('http://127.0.0.1:8000/auth/author_view/')

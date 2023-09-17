@@ -5,14 +5,10 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail, EmailMultiAlternatives
-from django.template.loader import render_to_string
-from .models import Post, Category, SubscribersCategory, PostCategory
+
+from .models import Post, Category, SubscribersCategory
 from .filters import PostFilter
 from .forms import PostForm
-from dotenv import load_dotenv, find_dotenv
-
-load_dotenv(find_dotenv())
 
 
 class PostList(ListView):
@@ -58,8 +54,6 @@ class PostCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
             post.p_type = 'NE'
         elif 'articles/create' in self.request.path:
             post.p_type = 'AR'
-
-        send_email_post_created(post, self.request.user.username)
 
         return super().form_valid(form)
 
@@ -179,33 +173,3 @@ def posts_by_category_list(request, id_ctg):
     }
 
     return render(request, 'posts_by_ctg.html', context=context)
-
-
-def send_email_post_created(post, username):
-
-    recipients = []
-    categories = PostCategory.objects.filter(post=post).values('category')
-    for ctg in categories:
-        sub_set = SubscribersCategory.objects.filter(category=ctg.get('category'))
-        for sub in sub_set:
-            if sub.user.email not in recipients:
-                recipients.append(sub.user.email)
-
-    email_message = EmailMultiAlternatives(
-        subject=f'{post.title}',
-        body=f'Здравствуй, {username}. Новая статья в твоем любимом разделе !\n\n'
-             f'{post.title}\n{post.text[:50]}...',
-        from_email=os.getenv('MAIN_EMAIL'),
-        to=recipients
-    )
-
-    html_content = render_to_string(
-        'email_content.html',
-        {
-            'post': post,
-            'username': username
-         }
-    )
-
-    email_message.attach_alternative(html_content, 'text/html')
-    email_message.send()
