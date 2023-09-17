@@ -186,10 +186,10 @@ def send_email_post_created(post, username):
     recipients = []
     categories = PostCategory.objects.filter(post=post).values('category')
     for ctg in categories:
-        user_set = SubscribersCategory.objects.filter(category_id=ctg.id).values('user')
-        for user in user_set:
-            if user.email not in recipients:
-                recipients.append(user.email)
+        sub_set = SubscribersCategory.objects.filter(category=ctg.get('category'))
+        for sub in sub_set:
+            if sub.user.email not in recipients:
+                recipients.append(sub.user.email)
 
     email_message = EmailMultiAlternatives(
         subject=f'{post.title}',

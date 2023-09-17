@@ -1,9 +1,11 @@
 {% extends "default.html" %}
 
 {% block content %}
-<h3> Вы вышли из системы </h3>
+<h3 style="padding-left: 20px"> Вы вышли из системы </h3>
 <hr>
-<a href="http://127.0.0.1:8000/posts/">Перейти к просмотру постов</a>
+<a style="padding-left: 20px" href="http://127.0.0.1:8000/posts/">Перейти к просмотру постов</a>
 <br>
-<a href="http://127.0.0.1:8000/accounts/login/">Войти</a>
+<button style="margin-left: 20px">
+    <a  class="nav-link" href="http://127.0.0.1:8000/accounts/login/">Войти</a>
+</button>
 {% endblock %}
