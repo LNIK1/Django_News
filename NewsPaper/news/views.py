@@ -1,10 +1,12 @@
 import os
+
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 from .models import Post, Category, SubscribersCategory
 from .filters import PostFilter
@@ -17,6 +19,7 @@ class PostList(ListView):
     queryset = Post.objects.order_by('-post_date')
     template_name = 'posts.html'
     context_object_name = 'posts'
+    paginate_by = 15
 
     def get_context_data(self, **kwargs):
 
@@ -49,6 +52,12 @@ class PostCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 
         if not self.request.user.is_authenticated:
             return HttpResponseRedirect('/accounts/login/')
+
+        today = timezone.now()
+        quantity = Post.objects.filter(author=post.author, post_date__day=today.day).count()
+
+        if quantity >= 3:
+            return render(self.request, 'posts_day_limit.html')
 
         if 'news/create' in self.request.path:
             post.p_type = 'NE'

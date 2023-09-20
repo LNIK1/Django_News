@@ -6,7 +6,7 @@
     <title>Email</title>
 </head>
 <body>
-    <h3> Здравствуйте, {{ username }}. Новая статья в вашем любимом разделе !</h3>
+    <h3> Здравствуйте, {{ username }}. Новый <a href="{{ link }}">пост</a> в вашем любимом разделе !</h3>
     <h3> {{ post.title }} </h3>
     <p> {{ post.text|truncatechars:51 }} </p>
 </body>

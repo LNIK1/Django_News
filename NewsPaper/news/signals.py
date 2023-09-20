@@ -2,6 +2,7 @@ import os
 from datetime import timedelta, date
 
 from django.core.mail import EmailMultiAlternatives
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.db.models.signals import post_save, pre_save, m2m_changed
@@ -29,7 +30,8 @@ def send_notifications(post, email, username):
         'email_content.html',
         {
             'post': post,
-            'username': username
+            'username': username,
+            'link': f'http://127.0.0.1:8000/posts/{post.id}'
         }
     )
 
@@ -56,13 +58,3 @@ def send_email_post_created(sender, action, instance, **kwargs):
                         if sub.email not in recipients:
                             recipients.append(sub.email)
                             send_notifications(instance, sub.email, sub.username)
-
-
-@receiver(pre_save, sender=Post)
-def add_posts_day_limit(sender, instance, **kwargs):
-
-    today = timezone.now()
-    quantity = Post.objects.filter(author=instance.author, post_date__date=today.date()).count()
-
-    if quantity >= 3:
-        return render(request, 'posts_day_limit.html')
