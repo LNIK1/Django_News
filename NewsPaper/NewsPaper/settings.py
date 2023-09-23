@@ -43,8 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #### Custom apps ####
-    # 'news',
-    'news.apps.NewsConfig',
+    'news',
+    # 'news.apps.NewsConfig',
     'accounts',
     'django.contrib.sites',
     'django.contrib.flatpages',
@@ -185,3 +185,9 @@ APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
 # если задача не выполняется за 25 секунд, то она автоматически снимается, можно поставить время побольше,
 # но как правило, это сильно бьёт по производительности сервера
 APSCHEDULER_RUN_NOW_TIMEOUT = 25  # Seconds
+
+CELERY_BROKER_URL = 'redis://default:20UGMNY8rK83uwFFJUNkl3thtsxmE76r@redis-10332.c304.europe-west1-2.gce.cloud.redislabs.com:10332'
+CELERY_RESULT_BACKEND = 'redis://default:20UGMNY8rK83uwFFJUNkl3thtsxmE76r@redis-10332.c304.europe-west1-2.gce.cloud.redislabs.com:10332'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'

@@ -1,9 +1,9 @@
 import os
 
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
@@ -11,6 +11,7 @@ from django.utils import timezone
 from .models import Post, Category, SubscribersCategory
 from .filters import PostFilter
 from .forms import PostForm
+from .tasks import send_email_post_created
 
 
 class PostList(ListView):
@@ -63,6 +64,9 @@ class PostCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
             post.p_type = 'NE'
         elif 'articles/create' in self.request.path:
             post.p_type = 'AR'
+
+        post.save()
+        send_email_post_created.delay(post.id)
 
         return super().form_valid(form)
 
@@ -148,6 +152,13 @@ class WrongTypeUpdateException(ListView):
 
     model = Post
     template_name = 'wrong_type_edit.html'
+
+
+class IndexView(View):
+
+    def get(self, request):
+
+        return render(request, 'welcome.html')
 
 
 @login_required
