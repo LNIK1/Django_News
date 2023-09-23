@@ -5,9 +5,6 @@ from celery import shared_task
 
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
-from django.contrib.auth.models import User
-from django.db.models.signals import post_save, pre_save, m2m_changed
-from django.dispatch import receiver
 
 from .models import Post, Category, SubscribersCategory, PostCategory
 from dotenv import load_dotenv, find_dotenv
@@ -48,7 +45,6 @@ def send_email_weekly_posts():
 
 
 @shared_task
-# @receiver(m2m_changed, sender=Post.categories.through)
 def send_email_post_created(id_post):
 
     # if action == 'post_add':
