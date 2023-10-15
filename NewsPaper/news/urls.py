@@ -1,12 +1,13 @@
 from django.urls import path
+from django.views.decorators.cache import cache_page  # @cache_page(60)
 from .views import PostList, PostDetail, PostCreate, PostUpdate, PostDelete, NewsList, NewsSearch, ArticlesList,\
     posts_by_category_list, subscribe_ctg, unsubscribe_ctg,\
     WrongTypeUpdateException
 
 urlpatterns = [
-    path('', PostList.as_view(), name='posts'),
+    path('', cache_page(60)(PostList.as_view()), name='posts'),
     path('<int:pk>', PostDetail.as_view(), name='post_detail'),
-    path('news/', NewsList.as_view(), name='news'),
+    path('news/', cache_page(300)(NewsList.as_view()), name='news'),
     path('news/search/', NewsSearch.as_view(), name='news_search'),
     path('news/create/', PostCreate.as_view(), name='news_create'),
     path('news/<int:pk>/update', PostUpdate.as_view(), name='news_update'),

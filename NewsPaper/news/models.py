@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models import Sum
 from django.db.models.functions import Coalesce
 from django.contrib.auth.models import User
+from django.core.cache import cache
 from datetime import datetime, timezone
 
 
@@ -71,6 +72,11 @@ class Post(models.Model):
 
     def preview(self):
         return f'{self.text[0:124]}...'
+
+    def save(self, *args, **kwargs):
+
+        super().save(*args, **kwargs)
+        cache.delete(f'post - {self.pk}')
 
 
 class Comment(models.Model):

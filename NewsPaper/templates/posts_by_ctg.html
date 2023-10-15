@@ -10,12 +10,12 @@
 
 <!-- В контенте на странице выводим все товары -->
 {% block content %}
-    <h1 style="text-align: center">Все опубликованные посты</h1>
-    <h4 style="padding-left: 20px">{% cur_time '%b %d %Y' %}</h4>
-    <h4 style="padding-left: 20px">Количество: {{ posts|length }}</h4>
-    <hr>
+<h1 style="text-align: center">Все опубликованные посты</h1>
+<h4 style="padding-left: 20px">{% cur_time '%b %d %Y' %}</h4>
+<h4 style="padding-left: 20px">Количество: {{ posts|length }}</h4>
+<hr>
 
-    <h5 style="padding-left: 20px; padding-right: 40px">Категория: {{ cur_ctg.name }}</h5>
+<h5 style="padding-left: 20px; padding-right: 40px">Категория: {{ cur_ctg.name }}</h5>
     {% if user.is_authenticated %}
         {% if is_subscribed %}
             <button style="margin-left: 20px"> <a class="nav-link" href="{% url 'unsubscribe_ctg' cur_ctg.id %}"> Отписаться </a> </button>

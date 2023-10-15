@@ -7,6 +7,8 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from django.views.decorators.cache import cache_page  # @cache_page(30)
+from django.core.cache import cache
 
 from .models import Post, Category, SubscribersCategory
 from .filters import PostFilter
@@ -35,6 +37,16 @@ class PostDetail(DetailView):
     model = Post
     template_name = 'post.html'
     context_object_name = 'post'
+
+    def get_object(self, *args, **kwargs):
+
+        obj = cache.get(f'post - {self.kwargs["pk"]}', None)
+
+        if not obj:
+            obj = super().get_object(queryset=self.queryset)
+            cache.set(f'post - {self.kwargs["pk"]}', obj)
+
+        return obj
 
 
 class PostCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):

@@ -18,7 +18,7 @@
     <h5 style="padding-left: 20px">Категории:</h5>
     <td>
         {% for ctg in categories %}
-            <a href="{% url 'posts_by_category_list' ctg.id %}" style="padding-left: 10px"> {{ ctg.name }} </a>
+        <a href="{% url 'posts_by_category_list' ctg.id %}" style="padding-left: 10px"> {{ ctg.name }} </a>
         {% endfor %}
     </td>
     <hr><br>
@@ -33,7 +33,7 @@
             </tr>
             {% for post in posts %}
                 <tr>
-                    <td style="padding-left: 10px; padding-right: 20px">{{ post.title|censor }}</td>
+                    <td style="padding-left: 10px; padding-right: 20px"><a href="{% url 'post_detail' post.id %}">{{ post.title|censor }}</a></td>
                     <td style="padding-left: 40px; padding-right: 20px">{{ post.post_date|date:'d M Y' }}</td>
                     {% if post.p_type == 'NE' %}
                         <td style="padding-left: 30px; padding-right: 20px">Новости</td>
