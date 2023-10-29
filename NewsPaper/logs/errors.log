@@ -1,0 +1,104 @@
+2023-10-29 15:57:52,990 ERROR C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\utils\log.py Internal Server Error: /posts/ (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('news/post_list.html'), <traceback object at 0x0000026CED886DC0>)
+Traceback (most recent call last):
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: news/post_list.html
+2023-10-29 15:58:18,007 ERROR C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\utils\log.py Internal Server Error: /posts/ (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('news/post_list.html'), <traceback object at 0x0000026CEDB4EC80>)
+Traceback (most recent call last):
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: news/post_list.html
+2023-10-29 15:58:18,008 ERROR C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\core\servers\basehttp.py "GET /posts/ HTTP/1.1" 500 87425 None
+2023-10-29 16:03:33,561 ERROR C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\utils\log.py Internal Server Error: /posts/ (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('news/post_list.html'), <traceback object at 0x000002463EE6E840>)
+Traceback (most recent call last):
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: news/post_list.html
+2023-10-29 16:03:33,563 ERROR C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\core\servers\basehttp.py "GET /posts/ HTTP/1.1" 500 87564 None
+2023-10-29 16:03:34,914 ERROR C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\utils\log.py Internal Server Error: /posts/ (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('news/post_list.html'), <traceback object at 0x000002463EF86A40>)
+Traceback (most recent call last):
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: news/post_list.html
+2023-10-29 16:03:34,915 ERROR C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\core\servers\basehttp.py "GET /posts/ HTTP/1.1" 500 87564 None
+2023-10-29 16:05:35,735 ERROR C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\utils\log.py Internal Server Error: /posts/ (<class 'django.template.exceptions.TemplateDoesNotExist'>, TemplateDoesNotExist('news/post_list.html'), <traceback object at 0x00000267B6B58740>)
+Traceback (most recent call last):
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\core\handlers\base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\template\response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\template\response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\template\response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\template\loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: news/post_list.html
+2023-10-29 16:05:35,736 ERROR C:\PyCharm\project_news_Django\venv\Lib\site-packages\django\core\servers\basehttp.py "GET /posts/ HTTP/1.1" 500 87564 None

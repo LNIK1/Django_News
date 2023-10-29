@@ -1,0 +1,7 @@
+2023-10-29 16:01:59,967 INFO autoreload Watching for file changes with StatReloader
+2023-10-29 16:02:19,835 INFO autoreload C:\PyCharm\project_news_Django\NewsPaper\NewsPaper\settings.py changed, reloading.
+2023-10-29 16:05:01,850 INFO autoreload Watching for file changes with StatReloader
+2023-10-29 16:05:16,447 INFO autoreload C:\PyCharm\project_news_Django\NewsPaper\news\views.py changed, reloading.
+2023-10-29 16:05:17,360 INFO autoreload Watching for file changes with StatReloader
+2023-10-29 16:05:20,850 ERROR basehttp "GET /posts/ HTTP/1.1" 500 145
+2023-10-29 16:05:32,157 INFO autoreload C:\PyCharm\project_news_Django\NewsPaper\NewsPaper\settings.py changed, reloading.
