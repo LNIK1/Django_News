@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from django.utils.translation import gettext
 from django.views.decorators.cache import cache_page  # @cache_page(30)
 from django.core.cache import cache
 

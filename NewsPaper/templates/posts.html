@@ -3,6 +3,7 @@
 
 {% load custom_filters %}
 {% load custom_tags %}
+{% load i18n %}
 
 <!-- Название будет products -->
 {% block title %}
@@ -10,12 +11,12 @@
 
 <!-- В контенте на странице выводим все товары -->
 {% block content %}
-    <h1 style="text-align: center">Все опубликованные посты</h1>
+    <h1 style="text-align: center">{% trans "Все опубликованные посты" %}</h1>
     <h4 style="padding-left: 20px">{% cur_time '%b %d %Y' %}</h4>
-    <h4 style="padding-left: 20px">Количество: {{ posts|length }}</h4>
+    <h4 style="padding-left: 20px">{% trans "Количество:" %} {{ posts|length }}</h4>
     <hr>
 
-    <h5 style="padding-left: 20px">Категории:</h5>
+    <h5 style="padding-left: 20px">{% trans "Категории:" %}</h5>
     <td>
         {% for ctg in categories %}
         <a href="{% url 'posts_by_category_list' ctg.id %}" style="padding-left: 10px"> {{ ctg.name }} </a>

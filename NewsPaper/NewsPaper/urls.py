@@ -25,4 +25,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('auth/', include('accounts.urls')),
     path('', IndexView.as_view()),
+    path('i18n/', include('django.conf.urls.i18n')),
 ]

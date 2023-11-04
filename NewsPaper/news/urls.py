@@ -5,9 +5,9 @@ from .views import PostList, PostDetail, PostCreate, PostUpdate, PostDelete, New
     WrongTypeUpdateException
 
 urlpatterns = [
-    path('', cache_page(60)(PostList.as_view()), name='posts'),
+    path('', PostList.as_view(), name='posts'),
     path('<int:pk>', PostDetail.as_view(), name='post_detail'),
-    path('news/', cache_page(300)(NewsList.as_view()), name='news'),
+    path('news/', NewsList.as_view(), name='news'),
     path('news/search/', NewsSearch.as_view(), name='news_search'),
     path('news/create/', PostCreate.as_view(), name='news_create'),
     path('news/<int:pk>/update', PostUpdate.as_view(), name='news_update'),

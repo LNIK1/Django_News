@@ -2,14 +2,7 @@ from django import template
 
 register = template.Library()
 
-CENSOR_WORDS = [
-    "суета",
-    "общества",
-    "элементом",
-    "концепция",
-    "интерпретировать",
-    "новость"
-]
+CENSOR_WORDS = []
 
 
 @register.filter()

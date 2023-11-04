@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Post, Category
+from modeltranslation.admin import TranslationAdmin
 
 
 def simple_func(modeladmin, request, queryset):
@@ -23,6 +24,14 @@ class CategoryForAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
     list_filter = ['name']
     search_fields = ['name']
+
+
+class CategoryAdmin(TranslationAdmin):
+    model = Category
+
+
+class PostAdmin(TranslationAdmin):
+    model = Post
 
 
 admin.site.register(Post, PostForAdmin)
