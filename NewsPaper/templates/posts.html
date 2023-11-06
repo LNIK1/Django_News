@@ -4,15 +4,15 @@
 {% load custom_filters %}
 {% load custom_tags %}
 {% load i18n %}
+{% load tz %}
+{% get_current_timezone as TIME_ZONE %}
 
-<!-- Название будет products -->
 {% block title %}
 {% endblock title %}
 
-<!-- В контенте на странице выводим все товары -->
 {% block content %}
     <h1 style="text-align: center">{% trans "Все опубликованные посты" %}</h1>
-    <h4 style="padding-left: 20px">{% cur_time '%b %d %Y' %}</h4>
+    <h4 style="padding-left: 20px">{{ current_time|timezone:TIME_ZONE }}</h4>
     <h4 style="padding-left: 20px">{% trans "Количество:" %} {{ posts|length }}</h4>
     <hr>
 
@@ -27,27 +27,26 @@
     {% if posts %}
         <table>
             <tr>
-                <td style="padding-left: 20px; padding-right: 20px"><h5>Заголовок</h5></td>
-                <td style="padding-left: 20px; padding-right: 10px"><h5>Дата публикации</h5></td>
-                <td style="padding-left: 20px; padding-right: 10px"><h5>Вид поста</h5></td>
-                <td style="padding-left: 500px; padding-right: 10px"><h5>Содержание</h5></td>
+                <td style="padding-left: 20px; padding-right: 20px"><h5>{% trans "Заголовок" %} </h5></td>
+                <td style="padding-left: 20px; padding-right: 10px"><h5>{% trans "Дата публикации" %} </h5></td>
+                <td style="padding-left: 20px; padding-right: 10px"><h5>{% trans "Вид поста" %} </h5></td>
+                <td style="padding-left: 500px; padding-right: 10px"><h5>{% trans "Содержание" %} </h5></td>
             </tr>
             {% for post in posts %}
                 <tr>
                     <td style="padding-left: 10px; padding-right: 20px"><a href="{% url 'post_detail' post.id %}">{{ post.title|censor }}</a></td>
                     <td style="padding-left: 40px; padding-right: 20px">{{ post.post_date|date:'d M Y' }}</td>
                     {% if post.p_type == 'NE' %}
-                        <td style="padding-left: 30px; padding-right: 20px">Новости</td>
+                        <td style="padding-left: 30px; padding-right: 20px">{% trans "Новости" %} </td>
                     {% else %}
-                        <td style="padding-left: 30px; padding-right: 20px">Статья</td>
+                        <td style="padding-left: 30px; padding-right: 20px">{% trans "Статья" %} </td>
                     {% endif %}
                     <td style="padding-left: 30px; padding-right: 20px">{{ post.text|censor|truncatewords:20 }}</td>
-
                 </tr>
             {% endfor %}
         </table>
     {% else %}
-        <h2 style="text-align: center">Актуальных новостей/статей нет !</h2>
+        <h2 style="text-align: center">{% trans "Актуальных новостей/статей нет !" %} </h2>
         <hr>
     {% endif %}
 

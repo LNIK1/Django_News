@@ -1,4 +1,5 @@
 import os
+import pytz
 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from django.urls import reverse_lazy
@@ -29,6 +30,8 @@ class PostList(ListView):
 
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
+        context['current_time'] = timezone.now()
+        context['timezones'] = pytz.common_timezones
 
         return context
 

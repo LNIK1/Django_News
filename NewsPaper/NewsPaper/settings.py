@@ -76,6 +76,8 @@ MIDDLEWARE = [
 
     # Если что убрать !
     'allauth.account.middleware.AccountMiddleware',
+
+    'news.middlewares.TimezoneMiddleware'
 ]
 
 ROOT_URLCONF = 'NewsPaper.urls'
@@ -145,8 +147,8 @@ USE_I18N = True
 USE_TZ = True
 
 LANGUAGES = [
-    ('en-us', 'English'),
-    ('ru', 'Русский')
+    ('ru', 'Русский'),
+    ('en-us', 'English')
 ]
 
 

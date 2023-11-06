@@ -4,9 +4,9 @@ from modeltranslation.translator import register, TranslationOptions
 
 @register(Category)
 class CategoryTranslationOptions(TranslationOptions):
-    fields = ()  # какие поля надо переводить (в виде кортежа)
+    fields = ('name', )  # какие поля надо переводить (в виде кортежа)
 
 
 @register(Post)
 class PostTranslationOptions(TranslationOptions):
-    fields = ()
+    fields = ('title', 'text', )

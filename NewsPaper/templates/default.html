@@ -1,63 +1,91 @@
 <!DOCTYPE html>
 {% load cache %}
 {% load i18n %}
+{% load tz %}
 <html lang="en">
-    {% cache 60 head %}
-        <head>
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-            <meta name="description" content="" />
-            <meta name="author" content="" />
-            <title>News portal</title>
-            <!-- Favicon-->
-            <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-            <!-- Core theme CSS (includes Bootstrap)-->
-            {% load static %}
-            <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
-        </head>
-    {% endcache %}
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>News portal</title>
+        <!-- Если сейчас больше чем 19 или меньше 7, то тёмная тема, иначе светлая -->
+        <style>
+            body {
+            background-color:
+                {% if current_time.hour >= 20 or current_time.hour <= 7 %}
+                    darkcyan
+                {% else %}
+                    powder blue
+                {% endif %};
+            }
+        </style>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        {% load static %}
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    </head>
     <body>
-        {% cache 60 navbar %}
-            <!-- Responsive navbar-->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div class="container">
-                    <a class="navbar-brand" href="#">Posts</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/posts/">Home</a></li>
-                        </ul>
-                    </div>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">News portal</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/posts/">Home</a></li>
+                    </ul>
                 </div>
-                <form action="{% url 'set_language' %}" method="POST"> {% csrf_token %}
-                    <input type="hidden" name="next" value="{{ redirect_to }}">
+            </div>
 
+            {% get_current_timezone as TIME_ZONE %}
+            <form action="" method="POST" style="padding-right: 7px"> {% csrf_token %}
+                <label for="timezone" style="color: #fff;">{% trans 'Часовой пояс' %}</label>
+                <select name="timezone">
+                    {% for tz in timezones %}
+                        <option value="{{ tz }}"
+                                {% if tz == TIME_ZONE %}
+                                    selected
+                                {% endif %}>
+                            {{ tz }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="set">
+            </form>
+
+<!--             {{ TIME_ZONE }}-->
+<!--            {{ current_time|timezone:TIME_ZONE }}-->
+
+            <form action="{% url 'set_language' %}" method="POST"> {% csrf_token %}
+                <input type="hidden" name="next" value="{{ redirect_to }}">
+                <label for="language" style="color: #fff;">{% trans 'Язык' %}</label>
                     <select name="language" id="language">
-                        <option value="none" hidden="">{% trans 'English' %}</option>
-                        <!-- получаем языки -->
-                        {% get_available_languages as LANGUAGES %}
-                        <!-- Помещаем их в список languages -->
-                        {% get_language_info_list for LANGUAGES as languages %}
+                    <option value="none" hidden="">{% trans 'Русский' %}</option>
 
-                        <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
-                        {% for language in languages %}
-                            <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
-                                {{ language.name_local }}
-                            </option>
-                        {% endfor %}
-                    </select>
-                    <input type="submit" value="set">
-                </form>
-            </nav>
-        {% endcache %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                        <option value="{{ language.code }}"
+                                {% if language.code == LANGUAGE_CODE %}
+                                    selected
+                                {% endif %}>
+                            {{ language.name_local }}
+                        </option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="set">
+            </form>
+        </nav>
         <!-- Page content-->
-<!--        <div class="container">-->
-            {% block title %}
-            {% endblock title %}
+        <!-- <div class="container">-->
+        {% block title %}
+        {% endblock title %}
 
-            {% block content %}
-            {% endblock content %}
-<!--        </div>-->
+        {% block content %}
+        {% endblock content %}
+        <!-- </div>-->
     </body>
 </html>
 

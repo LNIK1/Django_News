@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-04 18:33+0700\n"
+"POT-Creation-Date: 2023-11-06 16:41+0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\templates\default.html:44
+msgid "Часовой пояс"
+msgstr "Time zone"
+
+#: .\templates\default.html:62
+msgid "Язык"
+msgstr "Language"
+
+#: .\templates\default.html:64
+msgid "Русский"
+msgstr "English"
 
 #: .\templates\posts.html:14
 msgid "Все опубликованные посты"
@@ -29,6 +41,34 @@ msgstr "Quantity:"
 #: .\templates\posts.html:19
 msgid "Категории:"
 msgstr "Categories:"
+
+#: .\templates\posts.html:30
+msgid "Заголовок"
+msgstr "Title"
+
+#: .\templates\posts.html:31
+msgid "Дата публикации"
+msgstr "Pub date"
+
+#: .\templates\posts.html:32
+msgid "Вид поста"
+msgstr "Type"
+
+#: .\templates\posts.html:33
+msgid "Содержание"
+msgstr "Post text"
+
+#: .\templates\posts.html:40
+msgid "Новости"
+msgstr "News"
+
+#: .\templates\posts.html:42
+msgid "Статья"
+msgstr "Articles"
+
+#: .\templates\posts.html:49
+msgid "Актуальных новостей/статей нет !"
+msgstr "No actual posts !"
 
 #: .\templates\welcome.html:9
 msgid "Добро пожаловать на наш новостной портал"
